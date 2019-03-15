@@ -1,5 +1,4 @@
-﻿<?php
-@session_start() or die('Coud not start session in file '.__FILE__);
+<?php session_start() or die('Coud not start session in file '.__FILE__);
 
 include 'inc/all.php';
 
