@@ -1,0 +1,12 @@
+div#einladungen{
+   margin-bottom:80px;
+}
+
+img.einladungsbildchen{
+   height:15px;
+   width:15px;
+}
+
+a img{
+   border:0;
+}

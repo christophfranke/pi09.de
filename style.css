@@ -1,0 +1,402 @@
+/*
+ * einige wichtige eigenschaften, die man immer braucht:
+ * font-family: verdana - die schriftart
+ * font-size:1em die schriftgröße in em
+ * color: rgb(x,y,z) die schriftfarbe: der erste wert ist der rot anteil, der zweite grün der dritte blau. gültige sind werte zwischen 0 und 255
+ * margin: 5px 0 10px 3px abstände zu anderen html elementen, syntax margin:top right bottom left (im Uhrzeigersinn)
+ * padding: 5px; innenabstand. syntax wie margin, hier allerdings ein beispiel, bei dem der innenabstand für alle richtungen auf 5px gesetzt wird
+ *               diese notation geht auch mit margin
+ *
+ * generelle syntax von style angaben:
+ * tagname{
+ *    eigenschaft1:wert1;
+ *    eigenschaft2:wert2;
+ *    etc..
+ * }
+ *
+ * verwendung von klassen: (alle htmlelemente mit der htmleigenschaft class=classname bekommen die hier angegebenen eigenschaften)
+ * .classname{
+ *    angaben..
+ * }
+ *
+ * verwendung von ids: (das element mit der id=idname bekommt die hier angegebenen eigenschaften. htmlregel: es gibt keine zwei htmlelemente mit der gleichen id.)
+ * #idname{
+ *    angaben..
+ * }
+ *
+ * man kann tagname und classname bzw id verbinden mit tagname.classname oder tagname#idname.
+ * die in diesem block angegebenen eigenschaften beziehen sich dann nur auf tags mit dem namen tagname und der klasse classname (bzw der id idname)
+ *
+ * verschachtelung: (angaben beziehen sich auf alle elemente a, die sich innerhalb eines elements div befinden)
+ * div a{
+ *    angaben..
+ * }
+ *
+ * und das lässt sich alles fröhlich kombinieren:
+ * div#id1 table a.class1{
+ *    angaben..
+ * }
+ * das bezieht sich jetzt also auf alle elemente a der klasse class1, die sich innerhalb eines table elements befinden,
+ * welches sich innerhab des div elements mit der id id1 befindet.
+ *
+ * style vererbung:
+ * alle style angaben im bodytag gelten für die gesamte seite.
+ * dieses verhalten folgt dem prinzip, dass style angaben vererbt werden.
+ * das bedeutet, jede style angabe wird an jedes element weitergegeben,
+ * das sich innerhalb des ersteren befindet. also vom umschliessenden ans umschlossene (ok?).
+ * da sich alle elemente innerhalb des body elements befinden, sind angaben im bodytag quasi global.
+ * es wird allerdings nicht ganz jede style angabe weitergegeben, sondern nur die, wo es erlaubt ist,
+ * also es bekommt jetzt zb nicht jedes element ein background-image verpasst, nur weil das im body steht.
+ * welche angaben genau weitergegeben werden findet man durch ausprobieren ganz gut heraus.
+ *
+ */
+ 
+ * {
+   margin: 0px;
+   padding: 0px;
+}
+
+img {
+   border:0;
+}
+
+
+img.hintergrund{
+   position:fixed;
+   bottom:0;
+   left:0;
+   z-index:-1;
+}
+/* links */
+a {
+   text-decoration:none; /* none im gegensatz zu underlined */
+   color:rgb(0,0,0);
+}
+
+/* in kalendernavi sind monate, in denen es termine gibt von der Klasse highlight, die anderen sind normal */
+a.highlight{
+   font-weight:bold; /* alternative wäre normal */
+}
+
+a.normal{
+}
+
+/*Links im Fließtext im Termindetail Fenster*/
+div#termindetail a{
+   font-weight:bold;
+}
+
+/*  reiterbox ist die box, die die reiter umschliesst (und alle reiter beinhaltet) */
+div#reiterbox{
+   padding-top: 10px; /*padding ist der innenabstand der box. dh jedes element innerhalb dieser box hat diesen abstand zum rand der box */
+   width:690px;
+}
+
+/* das sind die reiter selbst. man beachte die verschachtelung des a elements */
+div#reiterbox a {
+   color:rgb(0,0,0);
+   font-weight:bold;
+   text-decoration:none;
+   padding:4px 8px 4px 8px;
+   font-size: 1.15em;
+}
+
+a.zusageButton{
+   color:rgb(0,0,0);
+   font-weight:bold;
+   text-decoration:none;
+   padding:4px 8px 4px 8px;
+   font-size: 1.15em;   
+   margin-top:10px;
+}
+
+a.zusageButton img{
+   height:17px;
+   width:17px;
+   margin-left:10px;
+}
+
+div#startrechts img{
+   height:17px;
+   width:17px;
+}   
+
+.abbrechenButton{
+   margin-top:5px;
+}
+
+/* das hier sind die boxen, die mit transparentem Hintergrund zu sehen sind (start, login etc).*/
+.transparent{
+   background-color:rgb(255,255,255);  /* fallback für IE und andere (alte) browser, die rgba nicht versteht*/
+   /* hier folgen einige fancy css3 features */
+   background-color:rgba(255,255,255,0.6);
+   -webkit-border-radius:0px; /* hierher kommen die runden ecken */
+   -moz-border-radius:0px; /* diese 3 angaben sind für die unterschiedichen browser, da css3 noch keinen einheitlichen standart hat */
+   border-radius:0px;
+   -webkit-box-shadow: 1px 1px 2px rgba(0,0,0, 0.5); /*macht schatten: syntax: left top radius color */
+   -moz-box-shadow: 1px 1px 2px rgba(0,0,0, 0.5);    /*left und top verschieben den schatten relativ zum element, dem der schatten gehört */
+   box-shadow:  1px 1px 2px rgba(0,0,0, 0.5);        /*radius ist der radius vom schatten */
+}
+
+div#reiterbox .disabled{
+   background-color:rgb(255,255,255);  /* fallback für IE und andere (alte) browser, die rgba nicht versteht*/
+   /* hier folgen einige fancy css3 features */
+   background-color:rgba(255,255,255,0.6);
+   color:#888888; /*Farbangabe im Hexadezimalsystem. Ziffern erlaubt von 0-9 A-F, die ersten beiden stehen für rot, dann grün, dann blau */
+   -webkit-border-radius:0px; /* hierher kommen die runden ecken */
+   -moz-border-radius:0px; /* diese 3 angaben sind für die unterschiedichen browser, da css3 noch keinen einheitlichen standart hat */
+   border-radius:0px;
+   -webkit-box-shadow: 1px 1px 2px rgba(0,0,0, 0.5); /*macht schatten: syntax: left top radius color */
+   -moz-box-shadow: 1px 1px 2px rgba(0,0,0, 0.5);    /*left und top verschieben den schatten relativ zum element, dem der schatten gehört */
+   box-shadow:  1px 1px 2px rgba(0,0,0, 0.5);        /*radius ist der radius vom schatten */
+}
+
+
+/* Diese Boxen sind ausschliesslich zur Positionierung gedacht:
+ * topbox ist ganz oben und umschliesst reiterbox und loginbox
+ * contentbox ist die große box unter den reitern
+ * loginbox ist das keine loginfenster rechts oben
+ */
+div#topbox{
+   margin:auto; /* margin ist der aussenabstand der box, dh wie viel platz gelassen wird vom bzw zum nächsten element (unkar oder?)
+                 * margin:auto bedeutet zentrieren */
+   margin-top:25px; /*abstand nach oben*/
+   width:1024px;
+}
+
+div#contentbox{
+   width:1024px;
+   margin:auto;
+   margin-top:40px;
+}
+
+
+
+div#loginbox{
+   float:right; /* float:right bedeutet, dass diese box aus dem normalen textfluss herausgenommen wird und stattdessen rechts positioniert wird
+                 *einadungenlink während die anderen elemente darum herum fliessen (floating lässt sich nur schwer in einem satz erklären) */
+   height:70px;
+   width:310px;
+   margin-top: 100px;
+   padding-top: 15px;
+   padding-left: 15px;
+}
+
+/* Nochmal Positionierung. Die folgenden Boxen befinden sich alle innerhalb der contentbox
+ * und sind nicht unbedingt gleichzeitig zu sehen
+ *
+ * start ist die box bei start
+ *
+ * terminnavibox umschliesst terminkalender und terminnavi
+ * während termindetail die detailansicht bei terminen beschreibt
+ */
+div#start{
+   min-height:300px; /* bei boxen, die sich innerhalb von contentbox befinden immer minimale höhe setzen,
+                      * damit die seite nicht auf einmal ganz 'klein' wirkt, sobald zu wenig text da ist, um sie zu füllen */
+}
+
+div#kontakt{
+   padding-top:15px;
+   padding-left:10px;
+}
+
+div#contentbox input{
+   max-width:280px;
+}
+
+/* Diese boxen befinden sich innerhalb der startbox, die eine links, die andere rechts */
+div#startlinks{
+   float:left;
+   width:475px;
+   min-height:300px;
+   padding: 15px;
+}
+
+div#startrechts{
+   float:right;
+   width:475px;
+   min-height:300px;
+   padding: 15px;
+}
+
+div#startrechts tr{
+   cursor:hand; /* IE kompatibel */
+   cursor:pointer;
+}
+
+
+div#terminnavibox{
+   width:430px;
+   float:left;
+   min-height:560px;
+   padding-top: 15px;
+   padding-left: 10px;
+}
+
+div#terminkalender{
+   width:85px;
+   float:left;
+   min-height:500px;
+   padding-top: 15px;
+   padding-left: 5px;
+}
+
+div#terminnavi{
+   width:315px;
+   float:right;
+   min-height:500px;
+   margin-right: 19px;
+   padding-top: 15px;
+   padding-left: 5px;
+   font-size: 0.9em;
+}
+
+div#terminnavi table{
+   width:100%;
+}
+
+div#einladungenlink{
+   font-size: 0.8em; 
+   padding-top:  5px;
+}
+
+div#termindetail_teilnehmer img{
+   width:14px;
+   height:14px;
+}
+
+div#termindetail_teilnehmer a{
+   font-weight:bold;
+}   
+
+div#monatelinks{
+   padding-top:  10px;
+   padding-left: 10px;
+}
+
+div#termindetail{
+   width:550px;
+   float:right;
+   min-height:560px;
+   padding-top: 15px;
+   padding-left: 15px;
+   padding-right:10px;
+}
+
+
+
+/* Das sind die styleangaben für das popup fenster, in dem man sich registriert
+ * registertext ist diejenige box mit dem text im registrierpopup */
+
+/* in dieser box befindet sich das formular im registrierpopup */
+div#registerbox{
+   width:600px;
+   padding-top: 15px;
+   padding-left: 15px;
+}
+
+div#registertext{
+   width:600px;
+   text-align:justify;
+   padding-top: 15px;
+   padding-left: 15px;
+   padding-bottom: 15px;
+   padding-right: 15px;
+   
+   
+}
+
+/* ab hier beziehen sich alle angeben auf die termindetail seite */
+div#termindetail div{
+   -webkit-box-shadow: 0 0 0 rgb(0,0,0); /*macht schatten: syntax: left top radius color */
+   -moz-box-shadow: 0 0 0 rgb(0,0,0);    /*left und top verschieben den schatten relativ zum element, dem der schatten gehört */
+   box-shadow:  0 0 0 rgb(0,0,0);        /*radius ist der radius vom schatten */
+}
+
+div#termindetail div#termindetail_alles{
+   -webkit-box-shadow: 2px 2px 2px rgba(0,0,0,0.5); /*macht schatten: syntax: left top radius color */
+   -moz-box-shadow: 2px 2px 2px rgba(0,0,0,0.5);    /*left und top verschieben den schatten relativ zum element, dem der schatten gehört */
+   box-shadow: 2px 2px 2px rgba(0,0,0,0.5);         /*radius ist der radius vom schatten */
+}
+
+div#termindetail_oberbalken{
+   height:10px;
+}
+
+div#termindetail div#termindetail_teilnehmer{
+   float:left;
+   width:205px;
+   min-height:20px;
+   background-color:transparent;
+   -webkit-box-shadow: inset 2px 2px 2px rgba(0,0,0,0.5); /*macht schatten: syntax: left top radius color */
+   -moz-box-shadow: inset 2px 2px 2px rgba(0,0,0,0.5);    /*left und top verschieben den schatten relativ zum element, dem der schatten gehört */
+   box-shadow: inset 2px 2px 2px rgba(0,0,0,0.5);         /*radius ist der radius vom schatten */
+}
+
+div#termindetail_rechts{
+   float:right;
+   width:215px;
+}
+
+div#termindetail_links{
+   width:335px;
+   font-size: 0.9em;
+}
+
+
+div#termindetail_beschreibung{
+   padding-left:20px;
+   padding-right:20px;
+}
+
+div#termindetail_kommentarbalkenlinks{
+   padding-left:0;
+   height:100px;
+   width:20px;
+   float:left;
+}
+
+div#termindetail_kommentarbalkenrechts{
+   padding-left:0;
+   height:100px;
+   width:60px;
+   float:right;
+}
+
+div#termindetail_links textarea{
+   height:100px;
+   width:255px;
+   border:0;
+   background-color: transparent;
+   resize:none;
+   -webkit-box-shadow: inset 2px 2px 2px rgba(0,0,0,0.5); /*macht schatten: syntax: left top radius color */
+   -moz-box-shadow: inset 2px 2px 2px rgba(0,0,0,0.5);    /*left und top verschieben den schatten relativ zum element, dem der schatten gehört */
+   box-shadow: inset 2px 2px 2px rgba(0,0,0,0.5);         /*radius ist der radius vom schatten */
+}
+
+div#termindetail_kommentarbutton{
+   padding-left:20px;
+}
+
+div#termindetail_kommentare{
+   padding-left:20px;
+   padding-right:10px;
+}
+
+
+div#termindetail_balkenrechts{
+   float:right;
+   width:10px;
+}
+
+div#termindetail_unterbalken{
+   height:10px;
+}
+
+div#kontakt{
+   min-height:300px;
+}
+
+div.jahr{
+   padding-left:10px;
+}
